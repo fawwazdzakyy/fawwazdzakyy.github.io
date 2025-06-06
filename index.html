@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fawwaz Dzaky Amrulloh - CEO & Owner Gesite.ai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            background-color: #0a0a0a; /* Very dark, almost black */
+            color: #e0e0e0; /* Light gray for text */
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .nav-active {
+            color: #00ffff; /* Cyan accent */
+            font-weight: 600;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden; /* For pseudo-elements */
+        }
+
+        .hero-content {
+            z-index: 10;
+        }
+
+        .hero-image-container {
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #1a1a1a; /* Darker border */
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 180, 255, 0.2); /* Cyan and blue glow */
+        }
+        
+        /* Aurora-like background effect for hero image container */
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px; /* Adjust size */
+            height: 400px; /* Adjust size */
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, rgba(0, 255, 255, 0.05) 40%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(50px); /* Increased blur */
+            z-index: -1; /* Behind the image */
+            animation: pulseGlow 5s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from {
+                transform: translate(-50%, -50%) scale(0.95);
+                opacity: 0.7;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 1.75rem; /* Tailwind text-2xl */
+            color: #ffffff;
+        }
+
+        .highlight-cyan {
+            color: #00ffff; /* Cyan */
+        }
+        .highlight-magenta {
+            color: #ff00ff; /* Magenta */
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #00ffff, #00aaff);
+            color: #0a0a0a;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+        }
+
+        .social-icon a {
+            color: #a0a0a0;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.5rem; /* Tailwind text-2xl */
+        }
+        .social-icon a:hover {
+            color: #00ffff; /* Cyan */
+            transform: scale(1.2);
+        }
+
+        .section {
+            padding: 6rem 0; /* Increased padding */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title {
+            font-size: 2.5rem; /* Tailwind text-4xl */
+            font-weight: 700;
+            margin-bottom: 3rem; /* Increased margin */
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #00ffff; /* Cyan */
+            margin-top: 0.5rem;
+            border-radius: 2px;
+        }
+
+        .card {
+            background-color: #161616; /* Slightly lighter dark */
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 200, 200, 0.1);
+        }
+        
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 20;
+        }
+        .scroll-down-indicator i {
+            font-size: 2rem;
+            color: #00ffff;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Mobile Menu Styling */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #mobile-menu.closed {
+            transform: translateX(100%); /* Slide out to the right */
+        }
+
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ffff;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c0c0;
+        }
+
+        /* Footer styling */
+        footer {
+            border-top: 1px solid #2a2a2a;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <a href="#" class="brand-name">FawwazDzaky.</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="text-gray-400 hover:text-cyan-400 nav-link">Beranda</a>
+                    <a href="#about" class="text-gray-400 hover:text-cyan-400 nav-link">Tentang</a>
+                    <a href="#gesite-ai" class="text-gray-400 hover:text-cyan-400 nav-link">Gesite.ai</a>
+                    <a href="#skills" class="text-gray-400 hover:text-cyan-400 nav-link">Keahlian</a>
+                    <a href="#contact" class="btn-primary text-sm">Kontak Saya</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="closed fixed inset-0 bg-black bg-opacity-95 z-40 md:hidden p-8 space-y-6 flex flex-col justify-center items-center text-center">
+        <button id="close-mobile-menu-button" class="absolute top-6 right-6 text-gray-300 focus:outline-none">
+            <i class="fas fa-times text-3xl"></i>
+        </button>
+        <a href="#hero" class="block text-gray-300 hover:text-cyan-400 py-3 text-2xl mobile-nav-link">Beranda</a>
+        <a href="#about" class="block text-gray-300 hover:text-cyan-400 py-3 text-2xl mobile-nav-link">Tentang</a>
+        <a href="#gesite-ai" class="block text-gray-300 hover:text-cyan-400 py-3 text-2xl mobile-nav-link">Gesite.ai</a>
+        <a href="#skills" class="block text-gray-300 hover:text-cyan-400 py-3 text-2xl mobile-nav-link">Keahlian</a>
+        <a href="#contact" class="block text-gray-300 hover:text-cyan-400 py-3 text-2xl mobile-nav-link">Kontak</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-10 items-center w-full">
+            <div class="hero-content text-center md:text-left">
+                <h3 class="text-2xl md:text-3xl font-light text-gray-300 mb-2">Halo, Saya</h3>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-3">
+                    Fawwaz <span class="highlight-cyan">Dzaky</span> A.
+                </h1>
+                <h2 class="text-xl md:text-3xl font-semibold mb-6">
+                    <span class="highlight-magenta">CEO & Owner</span> di Gesite.ai
+                </h2>
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-md mx-auto md:mx-0">
+                    Inovator muda berusia 15 tahun yang bersemangat dalam membangun solusi teknologi AI Chatbot untuk merevolusi cara bisnis berinteraksi.
+                </p>
+                <div class="flex justify-center md:justify-start space-x-5 mb-8">
+                    <a href="https://www.instagram.com/gesite.ai/" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@gesite.ai" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com/@gesite.ai" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="mailto:infogesite.ai@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+                <a href="#contact" class="btn-primary">Hubungi Saya</a>
+            </div>
+            <div class="hero-image-container flex justify-center md:justify-end order-first md:order-last">
+                 <img src="https://files.catbox.moe/yistaq.jpg" alt="Fawwaz Dzaky Amrulloh" 
+                 class="hero-image"
+                 onerror="this.onerror=null;this.src='https://placehold.co/300x300/0a0a0a/e0e0e0?text=Fawwaz';">
+            </div>
+        </div>
+        <div class="scroll-down-indicator">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="section container mx-auto px-6">
+        <div class="text-center">
+            <h2 class="section-title">Tentang <span class="highlight-cyan">Saya</span></h2>
+        </div>
+        <div class="grid md:grid-cols-1 lg:grid-cols-5 gap-12 items-center mt-12">
+            <div class="lg:col-span-2 flex justify-center">
+                 <img src="https://files.catbox.moe/uiy0ht.jpg" alt="Fawwaz Dzaky Portrait" 
+                 class="rounded-xl shadow-2xl w-full max-w-sm object-cover h-auto border-4 border-gray-800"
+                 onerror="this.onerror=null;this.src='https://placehold.co/400x500/161616/e0e0e0?text=Fawwaz';">
+            </div>
+            <div class="lg:col-span-3 text-gray-300 text-lg leading-relaxed space-y-5">
+                <p>
+                    Perkenalkan, saya <strong class="font-semibold text-white">Fawwaz Dzaky Amrulloh</strong>, seorang inovator muda yang lahir pada 19 September 2009. Di usia 15 tahun dan baru saja menyelesaikan pendidikan SMP, saya dengan bangga memimpin <strong class="highlight-cyan">Gesite.ai</strong> sebagai CEO dan Owner.
+                </p>
+                <p>
+                    Semangat saya untuk menciptakan Gesite.ai lahir dari pengamatan mendalam terhadap tantangan nyata yang dihadapi para pemilik bisnis dan tim layanan pelanggan. Saya melihat bagaimana mereka seringkali kewalahan menangani volume chat pelanggan, yang berdampak pada kepuasan pelanggan akibat respons yang lambat. Gesite.ai adalah jawaban saya untuk masalah tersebut.
+                </p>
+                <p>
+                    Di luar dunia Gesite.ai, saya adalah seorang pelajar yang giat mempersiapkan diri untuk jenjang SMA. Saya juga aktif dalam olahraga kalistenik, membuat konten digital, mengembangkan *web tools* sederhana, dan tak pernah berhenti mengeksplorasi dunia AI.
+                </p>
+                 <p class="italic border-l-4 border-cyan-500 pl-4 py-2 bg-gray-900 rounded-r-md">
+                    "Selalu berusaha menjadi yang terbaik di segala bidang, terus berprogres setiap harinya, dan bekerja semaksimal mungkin sampai batas kemampuan."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gesite.ai Section -->
+    <section id="gesite-ai" class="section bg-gray-950 py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h2 class="section-title">Gesite.ai: <span class="highlight-cyan">Inovasi Chatbot</span></h2>
+            </div>
+            <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-5 text-gray-300 text-lg leading-relaxed">
+                    <p>
+                        <strong class="font-semibold text-white">Gesite.ai</strong> adalah platform chatbot WhatsApp canggih yang didukung oleh Kecerdasan Buatan (AI). Misi utama kami adalah memberdayakan bisnis dari berbagai skala untuk mengotomatisasi interaksi dengan pelanggan, meningkatkan efisiensi layanan, dan menjamin respons yang cepat serta profesional, 24 jam sehari, 7 hari seminggu.
+                    </p>
+                    <p>
+                        Visi saya untuk Gesite.ai sangat ambisius: terus melahirkan fitur-fitur revolusioner yang mendukung pertumbuhan bisnis, menyempurnakan kapabilitas otomatisasi, hingga AI dapat berfungsi sebagai asisten penjualan virtual yang cerdas dan mandiri.
+                    </p>
+                    <p>
+                        Di balik Gesite.ai, terdapat integrasi teknologi AI, manajemen API Key yang aman, dan arsitektur *backend* yang kokoh. Sebagai pengembang tunggal, salah satu tantangan terbesar adalah menguasai pengembangan *backend* dari nol untuk membangun fitur krusial seperti *dashboard* analitik dan pengaturan chatbot. Ini adalah perjalanan yang menantang namun luar biasa memuaskan.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <div class="card flex items-start space-x-4">
+                        <i class="fas fa-brain text-3xl highlight-cyan mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-1">Personalisasi Cerdas</h3>
+                            <p class="text-gray-400">AI kami dirancang untuk memahami dan menyesuaikan respons sesuai kebutuhan unik setiap pelanggan, menciptakan pengalaman yang personal dan positif.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-4">
+                        <i class="fas fa-headset text-3xl highlight-cyan mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-1">Layanan Non-Stop 24/7</h3>
+                            <p class="text-gray-400">Pelanggan Anda akan selalu mendapatkan jawaban instan, kapan pun mereka butuhkan, bahkan di luar jam operasional bisnis.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start space-x-4">
+                        <i class="fas fa-chart-line text-3xl highlight-cyan mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-1">Peningkatan Efisiensi</h3>
+                            <p class="text-gray-400">Bebaskan sumber daya tim Anda dari tugas repetitif, sehingga mereka dapat fokus pada inisiatif strategis yang lebih berdampak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section container mx-auto px-6">
+        <div class="text-center">
+            <h2 class="section-title">Keahlian <span class="highlight-cyan">Saya</span></h2>
+        </div>
+        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card text-center">
+                <i class="fas fa-code text-4xl highlight-cyan mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Coding & Backend</h3>
+                <p class="text-gray-400">Memiliki dasar coding yang kuat dan terus aktif mengembangkan keahlian backend untuk Gesite.ai.</p>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-palette text-4xl highlight-cyan mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Desain Grafis & UI/UX</h3>
+                <p class="text-gray-400">Kemampuan menciptakan desain visual yang menarik dan antarmuka pengguna yang fungsional serta intuitif.</p>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-video text-4xl highlight-cyan mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Pembuatan Konten</h3>
+                <p class="text-gray-400">Berpengalaman dalam produksi konten digital kreatif dan proses editing video maupun gambar.</p>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-bullhorn text-4xl highlight-cyan mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Marketing Digital</h3>
+                <p class="text-gray-400">Pemahaman dasar mengenai strategi pemasaran digital untuk pertumbuhan Gesite.ai.</p>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-microchip text-4xl highlight-cyan mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Teknologi AI</h3>
+                <p class="text-gray-400">Antusiasme tinggi dan dedikasi untuk terus belajar serta mengimplementasikan AI dalam solusi praktis.</p>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-comments text-4xl highlight-cyan mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Pengembangan Diri</h3>
+                <p class="text-gray-400">Berkomitmen untuk terus meningkatkan kemampuan komunikasi dan *public speaking*.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-gray-950 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title">Mari <span class="highlight-cyan">Terhubung</span></h2>
+            <p class="text-lg text-gray-400 mt-6 mb-10 max-w-2xl mx-auto">
+                Saya sangat antusias untuk berdiskusi, menjajaki peluang kolaborasi, atau sekadar bertukar ide. Jangan ragu untuk menghubungi saya atau Gesite.ai melalui platform di bawah ini.
+            </p>
+            <div class="flex justify-center items-center space-x-6 md:space-x-10 mb-10">
+                <a href="https://www.instagram.com/gesite.ai/" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@gesite.ai" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@gesite.ai" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+             <a href="mailto:infogesite.ai@gmail.com" class="btn-primary text-lg">
+                <i class="fas fa-envelope mr-2"></i>Kirim Email ke Gesite.ai
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center">
+        <p class="text-gray-500 text-sm">
+            &copy; <span id="currentYear"></span> Fawwaz Dzaky Amrulloh. Dibangun dengan semangat inovasi dan kode.
+        </p>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black', 'bg-opacity-70', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-3');
+            } else {
+                navbar.classList.remove('bg-black', 'bg-opacity-70', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('py-3');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMenu() {
+            mobileMenu.classList.remove('closed');
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenu.classList.add('closed');
+            document.body.style.overflow = ''; // Allow scrolling
+        }
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMobileMenuButton.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+
+        // Smooth scroll for navigation links & Active Nav Link
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link, .scroll-down-indicator a, .btn-primary[href^="#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Calculate offset for fixed navbar if needed
+                        const navbarHeight = document.getElementById('navbar').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Section observer for active nav link and animations
+        const sections = document.querySelectorAll('section[id]');
+        const desktopNavLinks = document.querySelectorAll('header .nav-link'); // Only desktop links
+
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.4 // 40% of section visible
+        };
+        
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animation for section reveal
+                    entry.target.classList.add('visible');
+
+                    // Active nav link highlighting (for desktop)
+                    const id = entry.target.getAttribute('id');
+                    desktopNavLinks.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+                   // observer.unobserve(entry.target); // Optional: unobserve after animation
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+
+    </script>
+</body>
+</html>
+
